@@ -1,53 +1,30 @@
 # Teste de Dev Trainee - Iago & Lubien & Associates
 
-# Instuções sobre inicialização do ambinete de desenvolvimento
-
-## Criar um ambiente de desenvolvimento Django com Docker
+## Instuções sobre inicialização do ambinete de desenvolvimento
 
 Com o git instalado e devidamente configurado rodar:
 
 ```console
-git clone https://gitlab.com/devopspbs/django-docker-compose.git
-cd django-docker-compose
+git clone https://github.com/Mardik/ilachallagen.git
+cd ilachallagen
 ```
 
-Com docker e docker-compose devidamente instalados e configurados. Criar um novo projeto:
+Com docker e docker-compose devidamente instalados e configurados. Executar o comando criação do banco de dados inicial:
 
 ```console
-docker-compose run web django-admin startproject devopspbsproject .
+docker-compose run web python manage.py migrate
 ```
 
-Se você estiver rodando Docker diretamente sobre Linux é necessário ajustar as permissões. Lembre-se de repetir o comando abaixo sempre que estiver problemas para acessar os arquivos diretamente no Docker host.
+Se você estiver rodando Docker diretamente sobre Linux é pode ser necessário ajustar as permissões. Lembre-se de repetir o comando abaixo sempre que estiver problemas para acessar os arquivos diretamente no Docker host.
 
 ```console
 sudo chown -R $USER:$USER .
 ```
 
-Conectar o banco de dados:
-
-1. No diretório do projeto edite o arquivo de configurações do Django, no nosso exemplo, o `devopspbsproject/settins.py`.
-
-2. Substitua a sessão `DATABASES = ...` por:
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
-    }
-}
-```
-
-Por fim basta rodar `docker-compose up` para o Django ficar acessível em http://localhost:8000 .
-
-Para rodar comandos no "container do Django" use `docker-compose exec web`, como por exemplo:
+Em seguinda inicie o container da aplicação:
 
 ```console
-docker-compose exec web django-admin help
+docker-compose up
 ```
 
 ## Referências

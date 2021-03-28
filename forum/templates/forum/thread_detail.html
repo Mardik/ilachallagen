@@ -7,8 +7,8 @@
     <p class="uk-text-lead">
         {{ thread.text }}
     </p>
-    <a class="uk-flex-right" href="/thread/{{thread.id}}/update/">Edit thread</a>   
-    <a class="uk-flex-right" href="/thread/{{thread.id}}/delete/">excluir thread</a>
+    <a class="uk-flex-right" href="{% url 'thread-update' thread.id %}">Edit thread</a>   
+    <a class="uk-flex-right" href="{% url 'thread-delete' thread.id %}">excluir thread</a>
     <hr>
 
     <h2 id="replies">Replies</h2>
@@ -16,7 +16,7 @@
         {% if thread.replies.all %}
             {% for replie in thread.replies.all %}
                 <span class="uk-text-bold">{{replie.owner }}:</span>
-                <a href="/replie/{{replie.id}}/delete/">excluir replie</a>
+                <a href="{% url 'replie-delete' replie.id %}">excluir replie</a>
                 <div class="uk-margin">
                     {{replie.text }}
                 </div>

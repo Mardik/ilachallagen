@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- Fontes -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Staatliches"
+    />
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.18/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.18/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.18/dist/js/uikit-icons.min.js"></script>
+            
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>Forum Challage</title>
+    
+  </head>
+  <body>
+      <div id="sidebar" class="uk-section uk-section-primary uk-padding-remove-vertical">
+        <div class="uk-container">
+          {% block sidebar %}
+            <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+                <div class="uk-navbar-left">
+                  <ul class="uk-navbar-nav">
+                      <li><a class="uk-logo" href="/">Forum</a></li>
+                  </ul>          
+                </div>
+                <div class="uk-navbar-right">
+                  <ul class="uk-navbar-nav">
+                      <li><a href="thread/add/">New Thread</a></li>
+                  </ul>             
+                </div>
+            </nav>
+          {% endblock %}
+        </div>
+      </div>
+      <div id="content">
+        <div class="uk-section">
+          <div class="uk-container">
+            {% block content %}{% endblock %}
+          </div>
+        </div>      
+      </div>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+{% extends "forum/base.html" %}
+{% block content %}
+
+    <form class="uk-form-stacked" method="post">{% csrf_token %}
+            <legend class="uk-legend">New Thread</legend>
+            <div class="uk-margin">
+                <label class="uk-form-label" for="{{ form.title.id_for_label }}">
+                    {{ form.title.label }}
+                </label>                        
+                {{ form.title }}
+            </div>
+            <div class="uk-margin">
+                <label class="uk-form-label" for="form-stacked-text">
+                    {{ form.text.label }}
+                </label> 
+                {{ form.text }}
+            </div>
+            <div class="uk-margin">
+                <label class="uk-form-label" for="form-stacked-text">
+                    {{ form.owner.label }}
+                </label> 
+                {{ form.owner }}
+            </div>            
+            <div class="uk-margin">
+                <input class="uk-button uk-button-primary uk-button-small" type="submit" value="Update">
+            </div>
+    </form>
+
+{% endblock %}

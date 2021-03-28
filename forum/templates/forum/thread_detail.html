@@ -1,0 +1,63 @@
+{% extends "forum/base.html" %}
+{% block content %}
+    <h1 class="uk-article-title">{{ thread.title }} #{{ thread.id }} -{{ thread.owner }}</h1>
+    <div class="uk-article-meta">
+        Author {{ thread.owner }} Created At {{ thread.created_at }}
+    </div> 
+    <p class="uk-text-lead">
+        {{ thread.text }}
+    </p>
+    <a class="uk-flex-right" href="/thread/{{thread.id}}/update/">Edit thread</a>   
+    <a class="uk-flex-right" href="/thread/{{thread.id}}/delete/">excluir thread</a>
+    <hr>
+
+    <h2 id="replies">Replies</h2>
+    <div>
+        {% if thread.replies.all %}
+            {% for replie in thread.replies.all %}
+                <span class="uk-text-bold">{{replie.owner }}:</span>
+                <a href="/replie/{{replie.id}}/delete/">excluir replie</a>
+                <div class="uk-margin">
+                    {{replie.text }}
+                </div>
+            {% endfor %}
+        {% else %}
+            Don't have replies available
+        {% endif %}
+    </div>
+
+    <h2>Reply:</h2>
+
+    <form class="uk-form-stacked" method="post">{% csrf_token %}
+            <div class="uk-margin">
+                <label class="uk-form-label" for="{{form.text.id_for_label}}">
+                    {{ form.text.label }}
+                </label>
+                <textarea
+                    class="uk-textarea"
+                    name="{{ form.text.html_name }}"
+                    required="" 
+                    id="{{form.text.id_for_label}}"
+                    placeholder="{{form.text.help_text }}">
+                </textarea>
+            </div>
+            <div class="uk-margin">
+                <label class="uk-form-label" for="{{form.owner.id_for_label}}">
+                    {{ form.owner.label }}
+                </label>
+                <input
+                    class="uk-input"
+                    type="text"
+                    name="{{ form.owner.html_name }}" 
+                    maxlength="150" 
+                    required="" 
+                    id="{{ form.owner.id_for_label }}" 
+                    placeholder="{{form.owner.help_text }}">
+                </input>                
+            </div>
+            <div class="uk-margin">
+                <input class="uk-button uk-button-primary uk-button-small" type="submit" value="Send">
+            </div>
+    </form>
+
+{% endblock %}

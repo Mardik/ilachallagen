@@ -1,0 +1,7 @@
+{% extends "forum/base.html" %}
+{% block content %}
+    <form method="post">{% csrf_token %}
+        <p>Are you sure you want to delete the Reply: <strong>"{{ object.text }}-#{{ object.id }}"<strong>?</p>
+        <input type="submit" value="Confirm">
+    </form>
+{% endblock %}
